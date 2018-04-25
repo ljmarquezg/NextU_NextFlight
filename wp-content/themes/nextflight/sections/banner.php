@@ -26,18 +26,9 @@ if( $banner_image ){ ?>
                     if( !$ed_search ){
                         '</div>';
                     }
-                }
-                
-                if( $ed_search ){
-                    echo '<div class="banner-form">';
-                    travel_agency_get_banner_search(); 
-                    echo '</div>';
-                }            
+                }      
             ?>
     	</div>
-        <!-- <div id="ip"></div>
-<div id="address"></div>
-<hr/>Full response: <pre id="details"></pre> -->
         <?php 
         }
     ?>

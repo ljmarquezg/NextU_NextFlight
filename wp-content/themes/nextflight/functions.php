@@ -44,29 +44,55 @@
 			 		<?php echo do_shortcode('[tp_search_shortcodes slug="17702855"]')?>
 				</div>
         	</div>
-		</section>
-	
+		</section>	
 	<?php
 	}
 	?>
 	<?php 
-	//-------------------------- Agregar Hook con Rutas del mapa --------------------------
-	add_action('travel_agency_after_content', 'rutas_en_mapa');
-	function rutas_en_mapa() {
+	//-------------------------- Agregar Hook con Rutas del mapa  --------------------------
+	add_action('travel_agency_after_content', 'rutas_mapa',20);
+	function rutas_mapa() {
 	?>
-	<section class="activities" id="activities_section">
+	<section id="scroll-rutas" class="our-features" style="background:url(http://localhost/nextflight/wp-content/plugins/travel-agency-companion/includes/images/img13.jpg) no-repeat">
+		
+        <header class="section-header wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;">
+			<h2 class="section-title">Map Flight Routes</h2>
+			<div class="section-content">
+			<p>Check availables flights close to your location</p>
+			</div>            
+		</header>
+   		<div class="features-holder wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeInUp;">
+	   		<div class="container">
+    			<div class="form">
+	            	<?php
+             		echo do_shortcode('[tp_map_widget  width=100% height=500 direct=true subid=""]');
+            		?>
+        		</div>
+    		</div>
+		</div>   
+	</section>
+	<?php
+	}
+	?>	
+
+	<?php 
+	//-------------------------- Agregar Hook con ofertas de vuelos --------------------------
+	add_action('travel_agency_after_content', 'ofertas',30);
+	function ofertas() {
+	?>
+	<section class="activities" id="scroll-ofertas">
 	    <header class="section-header">        
         	<div class="holder">
     			<h2 class="section-title">
-					Map Flight Routes
+					Check the offers we have for you
 				</h2>
 				<div class="section-content" title="Shift-click to edit this element.">
-					<p> Check availables flights close to your location</p>
-					<button class="btn-more title toggle" id="map-routes">Show Map</button>
+					<p> Check the best prices close to your location</p>
+					<button class="btn-more title toggle" id="map-routes"><span>Show</span> Offers</button>
 				</div>
 				<div class="form toggler" style="display: none;">
 					<?php
-						echo do_shortcode('[tp_map_widget  width=100% height=500 direct=true subid=""]');
+						echo do_shortcode('[tp_ducklett_widget responsive=true limit=6 type=brickwork filter=1  subid=""]');
 					?>
         		</div>
     		</div>
@@ -75,36 +101,20 @@
 	<?php
 	}
 	?>
-	<?php 
-	//-------------------------- Agregar Hook con ofertas de vuelos  --------------------------
-	add_action('travel_agency_after_content', 'ofertas_de_vuelo');
-	function ofertas_de_vuelo() {
-	?>
-		<section class="search-form">
-			<div class="container">
-				<div class="text">
-            		<h5 class="title toggle" id="sales"><span>Show</span> Map Flight Routes</h5>
-        		</div>
-    			<div class="form toggler" style="display:none">
-	            	<?php
-             		echo do_shortcode('[tp_map_widget  width=100% height=500 direct=true subid=""]');
-            		?>
-        		</div>
-    		</div>
-		</section>
-	<?php
-	}
-	?>	
 
 	<?php
 	//=========================== Antes del footer =================================
 	//----------- Agregar el mapa con las oficinas de Next Flight ------------------
-		add_action( 'travel_agency_entry_footer', 'agregar_mapa',90);
+		add_action( 'travel_agency_after_content', 'agregar_mapa',90);
 		function agregar_mapa(){
 			echo do_shortcode('[intergeo id="AjM"][/intergeo]');
 		};
-		?>
+	?>
+
+	<?php 
+	//========================Mapas en la sección footer ======================
 	
+	?>
 <?php
 	function travel_agency_header(){     
     $phone       = get_theme_mod( 'phone', __( '(888) 123-45678', 'travel-agency' ) );

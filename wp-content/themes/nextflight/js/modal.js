@@ -28,6 +28,21 @@ jQuery(document).ready(function(){
     jQuery(".loader-container").fadeOut(3000);
 })
 
+    function goToByScroll(id){
+          // Scroll
+        jQuery('html,body').animate({
+            scrollTop: jQuery(id).offset().top},
+            'slow');
+    }
+
+    jQuery('a[href*="scroll"]').click(function(e) { 
+        // alert(jQuery(this).attr("id"))
+          // Prevent a page reload when a link is pressed
+        e.preventDefault(); 
+          // Call the scroll function
+        goToByScroll(jQuery(this).attr("href"));           
+    });
+
 jQuery(document).ready(function(){
     jQuery(".toggle").click(function(){
        var self =  document.getElementById(jQuery(this).attr('id'));
