@@ -10,22 +10,6 @@
 get_header(); 
 
 $home_sections = travel_agency_get_homepage_section();
-
-if ( 'posts' == get_option( 'show_on_front' ) ) { //Show Static Blog Page
-    include( get_home_template() );
-    get_sidebar();
-}elseif( $home_sections ){ 
-    
-    //If any one section are enabled then show custom home page.
-    foreach( $home_sections as $section ){
-        travel_agency_get_template_part( esc_attr( $section ) );  
-    }
-    do_action( 'travel_agency_after_content' );
-    
-}else {
-    //If all section are disabled then show respective page template. 
-    include( get_page_template() );
-    get_sidebar();
-}
-
+travel_agency_get_template_part( esc_attr( $home_sections[0] ) );  
+do_action( 'travel_agency_after_content' );
 get_footer();
